@@ -29,3 +29,14 @@ type TFormData = {
   birth: string;
   gender: string;
 }
+
+
+type TFAQItem = {
+  title: string,
+  content: string
+}
+
+type TFAQ = {
+  title: string,
+  perguntas: TFAQItem[]
+}
