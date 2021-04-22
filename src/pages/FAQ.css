@@ -1,0 +1,19 @@
+.FAQ {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #181A1B;
+  padding: 50px;
+  padding-top: 130px;
+
+}
+
+.FAQ h1 {
+  color: white;
+}
+
+.FAQ ul {
+  list-style: none;
+}

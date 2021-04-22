@@ -1,0 +1,20 @@
+.FAQItem {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 10px;
+}
+
+.FAQItem button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.FAQItem span {
+  color: white;
+  font-size: 1.2rem;
+}
