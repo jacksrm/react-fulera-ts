@@ -9,24 +9,27 @@ interface SuccessBoxProps extends HTMLAttributes<HTMLOrSVGElement> {
 export default function SuccessBox({success, children}: SuccessBoxProps) {
   const [fade, setFade] = useState('');
   const [display, setDisplay] = useState('none')
-
   useEffect(() => {
-    console.log(success, children)
     if(success) setDisplay('flex');
-
-    setTimeout(() => {
+    
+    const fadeTime = setTimeout(() => {
       setFade('fade');
     }, 3000);
-
-    setTimeout(() => {
+  
+    const noDisplayTime =setTimeout(() => {
       setDisplay('none')
     }, 5001);
-  }, []);
+
+    return () => {
+      clearTimeout(fadeTime)
+      clearTimeout(noDisplayTime)
+    }
+  }, [success, children]);
 
 
   return (
-    <span className={'SuccessBox ' + fade} style={{display}}>
+    <h2 className={'SuccessBox ' + fade} style={{display}}>
       {children}
-    </span>
+    </h2>
   );
 }

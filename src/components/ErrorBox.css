@@ -1,6 +1,7 @@
 #ErrorBox {
   display: flex;
   justify-content: center;
+  min-width: 500px;
   border: 1px solid darkred;
   box-shadow: 0 0 3px 3px rgba(139, 0, 0, 0.616) ;
   padding: 15px;

@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
 import ErrorBox from '../components/ErrorBox';
-// import SuccessBox from '../components/SuccessBox';
+
+import api from '../connection/api';
 
 import './Register.css';
 
 export default function Form() {
-  const history = useHistory()
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,11 +19,13 @@ export default function Form() {
 
   const [errors, setErrors] = useState<JSX.Element[]>([]);
 
-  function handleSubmit(e: SyntheticEvent) {
+  async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    setErrors([])
 
-    const data = {
+    setErrors([])
+    window.scrollTo(0, 0);
+
+    const user = {
       email,
       confirmEmail,
       password,
@@ -31,53 +34,39 @@ export default function Form() {
       gender,
     };
 
-    setEmail('');
-    setConfirmEmail('');
-    setPassword('');
-    setName('');
-    setBirth('');
-    setGender('');
+    try {
+      const response = await api.post('register/create', user);
 
-    validateFields(data);
-  }
-
-  function validateFields(fields: TFormData ) {
-    let errCount = 0
-    
-    Object.entries(fields).map(([key, val]) => {
-      if (!val) {
-        errCount++;
-        setErrors((prev) => [
-          ...prev,
-          <ErrorBox key={prev.length}>
-            → Campo {key} não pode ser vazio
-          </ErrorBox>,
-        ]);
-      }
-
-      return null;
-    });
-
-    if (fields.email !== fields.confirmEmail)
-      errCount++;
-      setErrors((prev) => [
-        ...prev,
-        <ErrorBox key={prev.length}>→ E-mails estão diferentes </ErrorBox>,
-      ]);
-
-    if(errCount === 0) {
-      console.log('dasjdaskjdbaksdaksdb')
       history.push({
         pathname: '/',
         search: '',
         state: {
-          success: true,
-          message: 'Registrado com sucesso!'
+          success: response.status === 200,
+          message: response.data.message,
         },
-        
-      })
+      });
+    } catch (error) {
+      const { validation, message } = error.response.data;
+      if (validation) {
+        // eslint-disable-next-line array-callback-return
+        validation.body.keys.map((el: string, i: number) => {
+          setErrors((prev) => [
+            ...prev,
+            <ErrorBox key={el}>
+              {validation.body.message[i].replace(/\[.*\]/, 'equal to email!')}
+            </ErrorBox>,
+          ]);
+        });
+      }
 
-      // setErrors([<SuccessBox>Conta criada com suesso!!!</SuccessBox>])
+      if(message) {
+        setErrors((prev) => [
+          ...prev,
+          <ErrorBox key={prev.length}>
+            {message}
+          </ErrorBox>,
+        ]);
+      }
     }
   }
 
@@ -87,6 +76,7 @@ export default function Form() {
       {errors.map((err) => err)}
       <form action="#" onSubmit={handleSubmit}>
         <input
+          autoFocus
           name="email"
           type="email"
           placeholder="E-mail"

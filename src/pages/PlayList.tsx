@@ -43,7 +43,7 @@ export default function PlayList({ id }: Playlist) {
               return (
                 <li key={el.id}>
                   {/* <audio controls src={url}></audio>  */}
-                  <AudioPlayer songURL={url} title={el.title} />
+                  <AudioPlayer author={el.author} songURL={url} title={el.title} />
                 </li>
               );
             })}

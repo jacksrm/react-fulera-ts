@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import PlayList from './pages/PlayList';
 import Register from './pages/Register';
+import Login from './pages/Login';
 import FAQ from './pages/FAQ';
 
 import Navbar from './components/Navbar';
@@ -17,7 +18,7 @@ function App() {
         <Route
           exact
           path="/"
-          render={(props) => <MainPage state={props.location.state} /> }
+          render={() => <MainPage /> }
         />
         <Route
           exact
@@ -29,6 +30,7 @@ function App() {
         />
 
         <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
         <Route path="/faq" component={FAQ} />
       </Switch>
 

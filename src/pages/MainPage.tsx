@@ -1,6 +1,6 @@
 // import SubPage from './SubPage';
 import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Button from '../components/Button';
 import CardList from '../components/CardList';
@@ -10,25 +10,40 @@ import SuccessBox from '../components/SuccessBox';
 import api from '../connection/api';
 
 import './MainPage.css';
-interface MainPageProps {
-  state: any;
+interface LocationProps {
+  success: boolean;
+  message: string
 }
-
-export default function MainPage({ state }: MainPageProps) {
+// interface MainPageProps {
+//   state?: any;
+// }
+// { state }: MainPageProps
+export default function MainPage() {
   const [playlists, setPlaylists] = useState<TPlaylist[]>([]);
   const [success, setSuccess] = useState(false)
   const [message, setMessage] = useState('')
 
+  const location = useLocation<LocationProps>()
+
   useEffect(() => {
     api.get('playlists')
       .then( response => setPlaylists(response.data));
+    
+      window.scrollTo(0,0) 
+    return () => {
+      
+    }
+  }, [])
 
-    if(state) {
-      setSuccess(state.success);
-      setMessage(state.message);
+  useEffect(() => {
+    
+    if(location.state) {
+      setSuccess(location.state.success);
+      setMessage(location.state.message);
     }
 
-  }, [state])
+    window.history.replaceState({}, document.title)
+  },[location])
 
   return (
     <>
@@ -50,7 +65,7 @@ export default function MainPage({ state }: MainPageProps) {
             textDecoration: 'underline',
             textTransform: 'none',
           }}>
-          * Sujeito a termos e condições.
+          *Sujeito a termos e condições.
         </Button>
       </div>
 
@@ -58,7 +73,7 @@ export default function MainPage({ state }: MainPageProps) {
         <h1>É música que você quer?</h1>
         <p>Escute uma de nossas playlists gratuitas.</p>
         <Button gray noBg lg circle to="/register">
-          obter spotify premium
+          OBTER SPOTIFY PREMIUM
         </Button>
 
         <CardList>

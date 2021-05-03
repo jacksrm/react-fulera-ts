@@ -1,4 +1,4 @@
-.Register {
+.Login {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -9,19 +9,19 @@
   padding: 100px 0;
 }
 
-.Register h1 {
+.Login h1 {
   font-size: 1.5rem;
   margin-bottom: 25px;
   color: lightgray;
 }
 
-.Register form {
+.Login form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Register form input:not([type="radio"]) {
+.Login form input {
   background-color: transparent;
   border: 1px solid lightgray;
   width: 60vw;
@@ -33,31 +33,15 @@
   font-size: 1.2rem;
   color: lightgray;
 }
-.Register form input[type="date"] {
-  margin-top: 0;
-}
-.Register form input {
+
+.Login form input {
   transition: box-shadow 200ms;
 }
-.Register form input:focus {
+.Login form input:focus {
   box-shadow: 0 0 3px 3px rgb(58, 58, 58) ;
 }
 
-.Register form label {
+.Login form label {
   color: lightgray;
   font-size: 1.2rem;
-}
-
-.Register form .radio-group {
-  display: flex;
-  align-items: center;
-  width: 60vw;
-  max-width: 1000px;
-  min-width: 600px;
-  margin-bottom: 25px;
-}
-
-.Register .radio-group label{
-  margin-right: 15px;
-  margin-left: 5px;
 }

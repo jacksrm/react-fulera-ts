@@ -6,9 +6,10 @@ import './AudioPlayer.css';
 interface AudioPlayerProps {
   songURL: string;
   title: string;
+  author: string;
 }
 
-export default function AudioPlayer({ title, songURL }: AudioPlayerProps) {
+export default function AudioPlayer({ title, author, songURL }: AudioPlayerProps) {
   const [playing, setPlaying] = useState(false);
   const [song] = useState(new Audio(songURL));
   const [elapsed, setElapsed] = useState('00:00');
@@ -66,7 +67,7 @@ export default function AudioPlayer({ title, songURL }: AudioPlayerProps) {
       className={'AudioPlayer ' + (playing ? 'selected' : '')}
       onClick={togglePlay}>
       <button>{buttonIcon}</button>
-      <span>{title}</span>
+      <span>{author} - {title}</span>
       <span>{elapsed}</span>
     </div>
   );

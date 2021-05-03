@@ -8,11 +8,15 @@ function Navbar() {
     <header className="Navbar">
       <Logo />
       <nav>
-        <Button green lg circle to="/register">
+        <Button noBg noBorder to="/faq"style={{ fontSize: '0.9rem'}}>
+          FAQ
+        </Button>
+        <span>|</span>
+        <Button noBg noBorder to="/register"style={{ fontSize: '0.9rem'}}>
           Registre-se
         </Button>
-        <Button noBg noBorder to="/faq">
-          FAQ
+        <Button noBg noBorder to="/login" style={{ fontSize: '0.9rem'}}>
+          Login
         </Button>
       </nav>
     </header>
