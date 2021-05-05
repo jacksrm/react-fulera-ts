@@ -8,7 +8,7 @@ import api from '../connection/api';
 
 import './Register.css';
 
-export default function Form() {
+export default function Register() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');

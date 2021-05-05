@@ -6,7 +6,7 @@ import ErrorBox from '../components/ErrorBox';
 
 import api from '../connection/api';
 
-import './Register.css';
+import './Login.css';
 
 export default function Form() {
   const history = useHistory();
@@ -20,10 +20,22 @@ export default function Form() {
   async function handleLogin(e: SyntheticEvent) {
     e.preventDefault();
 
+    // const data = {
+    //   email,
+    //   password
+    // }
+
+    // try {
+    //   const response = await api.post('login', data)
+
+      
+    // } catch (error) {
+      
+    // }
   }
 
   return (
-    <div className="Register">
+    <div className="Login">
       <h1>Faça login</h1>
       {errors.map((err) => err)}
       <form action="#" onSubmit={handleLogin}>
