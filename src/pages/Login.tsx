@@ -19,6 +19,21 @@ export default function Form() {
 
   async function handleLogin(e: SyntheticEvent) {
     e.preventDefault();
+    const user = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await api.post('profile/login', user);
+      localStorage.setItem("user",response.data.user);
+      localStorage.setItem("id",response.data.id);
+     
+      history.push( `/profile/${response.data.user}`);
+
+    } catch (error) {
+      
+    }
 
   }
 
