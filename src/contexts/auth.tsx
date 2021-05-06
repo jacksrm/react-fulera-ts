@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { createContext, HTMLAttributes, useEffect, useState } from 'react';
 
 import { THandleError, TLoginData, TLoginResponse, TSession } from '../react-app-env';

@@ -1,11 +1,9 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
 import ErrorBox from '../components/ErrorBox';
-
-import api from '../connections/api';
 
 import AuthContext from '../contexts/auth';
 
@@ -23,6 +21,7 @@ export default function Login() {
     if (session.authenticated) {
       history.push(`/profile/${session.userURL}`);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   function handleLogin(e: SyntheticEvent) {
@@ -35,7 +34,7 @@ export default function Login() {
 
     signIn(user, (err) => {
       setErrors([])
-      
+
       if(axios.isAxiosError(err) && err) {
         setErrors((prev) => [
           ...prev,

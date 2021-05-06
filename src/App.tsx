@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
