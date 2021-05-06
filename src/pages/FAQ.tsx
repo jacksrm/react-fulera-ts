@@ -1,7 +1,7 @@
 import './FAQ.css'
 import FAQItem from '../components/FAQItem'
 import { useEffect, useState } from 'react'
-import api from '../connection/api'
+import api from '../connections/api'
 
 export default function FAQ() {
   const [faqData, setFaqData] = useState<TFAQ>({ title: '', perguntas: [] })

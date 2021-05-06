@@ -4,12 +4,13 @@ import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 import ErrorBox from '../components/ErrorBox';
 
-import api from '../connection/api';
+import api from '../connections/api';
 
 import './Register.css';
 
 export default function Register() {
   const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +40,6 @@ export default function Register() {
 
       history.push({
         pathname: '/',
-        search: '',
         state: {
           success: response.status === 200,
           message: response.data.message,

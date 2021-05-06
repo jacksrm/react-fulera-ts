@@ -1,27 +1,28 @@
-/// <reference types="react-scripts" />
+/// <reference  types="react-scripts" />
 
+import { AxiosError } from "axios";
 
-type TSong = {
-  id: number,
-  title: string,
-  path: string,
-  author: string
+export interface TSong {
+  id: number;
+  title: string;
+  path: string;
+  author: string;
 }
 
-type TSongList = {
-  playlistId: number,
-  songList: Array<TSong>
+export interface TSongList {
+  playlistId: number;
+  songList: Array<TSong>;
 }
 
-type TPlaylist = {
-  id: number,
-  cover: string,
-  playlistName: string
+export interface TPlaylist {
+  id: number;
+  cover: string;
+  playlistName: string;
 }
 
-type TPlaylistSongList = TPlaylist[]
+export type TPlaylistSongList = TPlaylist[];
 
-type TFormData = {
+export interface TFormData {
   email: string;
   confirmEmail: string;
   password: string;
@@ -30,13 +31,32 @@ type TFormData = {
   gender: string;
 }
 
-
-type TFAQItem = {
-  title: string,
-  content: string
+export interface TFAQItem {
+  title: string;
+  content: string;
 }
 
-type TFAQ = {
-  title: string,
-  perguntas: TFAQItem[]
+export interface TFAQ {
+  title: string;
+  perguntas: TFAQItem[];
 }
+
+export interface TLoginResponse {
+  userURL: string;
+  user: {
+    name: string;
+    id: string;
+  };
+}
+
+export interface TSession extends TLoginResponse {
+  authenticated: boolean;
+}
+
+export interface TLoginData {
+  email: string;
+  password: string;
+}
+
+export type THandleError = (err: Error | AxiosError) => void;
+

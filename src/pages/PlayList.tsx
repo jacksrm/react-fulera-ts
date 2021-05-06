@@ -1,7 +1,7 @@
 import { DOMAttributes, useEffect, useState } from 'react';
 
 import AudioPlayer from '../components/AudioPlayer';
-import api from '../connection/api';
+import api from '../connections/api';
 
 import './PlayList.css';
 

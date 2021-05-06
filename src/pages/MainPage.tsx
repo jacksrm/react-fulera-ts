@@ -1,13 +1,14 @@
-// import SubPage from './SubPage';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { TPlaylist } from '../react-app-env';
 
 import Button from '../components/Button';
 import CardList from '../components/CardList';
 import Card from '../components/Card';
 import SuccessBox from '../components/SuccessBox';
 
-import api from '../connection/api';
+import api from '../connections/api';
 
 import './MainPage.css';
 interface LocationProps {

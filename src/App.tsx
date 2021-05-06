@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
@@ -9,32 +10,36 @@ import FAQ from './pages/FAQ';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-function App() {
+import { AuthProvider } from './contexts/auth';
 
+function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <MainPage /> }
-        />
-        <Route
-          exact
-          path="/playlist/:id"
-          render={(props) => (
-            <PlayList id={parseInt(props.match.params.id) }
-            />
-          )}
-        />
+      {/* <Navbar session={session} setSession={setSession} /> */}
+      <AuthProvider>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => <MainPage /> }
+          />
+          <Route
+            exact
+            path="/playlist/:id"
+            render={(props) => (
+              <PlayList id={parseInt(props.match.params.id) }
+              />
+            )}
+          />
 
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route path="/faq" component={FAQ} />
-      </Switch>
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" render={() => <Login />} />
+          <Route path="/faq" component={FAQ} />
+        </Switch>
 
-      <Footer />
+        <Footer />
+      </AuthProvider>
     </div>
   );
 }
