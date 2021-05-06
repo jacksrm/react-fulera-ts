@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import Button from '../components/Button';
 import ErrorBox from '../components/ErrorBox';

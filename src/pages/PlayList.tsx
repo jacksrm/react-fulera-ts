@@ -1,5 +1,7 @@
 import { DOMAttributes, useEffect, useState } from 'react';
 
+import { TPlaylist, TSong } from '../react-app-env';
+
 import AudioPlayer from '../components/AudioPlayer';
 import api from '../connections/api';
 
