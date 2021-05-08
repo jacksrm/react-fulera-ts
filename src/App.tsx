@@ -5,6 +5,8 @@ import PlayList from './pages/PlayList';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import FAQ from './pages/FAQ';
+import Profile from './pages/Profile';
+
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -35,6 +37,9 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" render={() => <Login />} />
           <Route path="/faq" component={FAQ} />
+          <Route path="/:nameURL" component={Profile}
+          />
+
         </Switch>
 
         <Footer />

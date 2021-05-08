@@ -45,7 +45,7 @@ export interface TLoginResponse {
   userURL: string;
   user: {
     name: string;
-    id: string;
+    id: number;
   };
 }
 

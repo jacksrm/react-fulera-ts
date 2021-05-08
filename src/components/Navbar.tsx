@@ -20,7 +20,7 @@ function Navbar() {
           <Button
             noBg
             noBorder
-            to={`/profile/${session.userURL}`}
+            to={`/${session.userURL}`}
             style={{ fontSize: '0.9rem' }}>
             {session.user.name}
           </Button>

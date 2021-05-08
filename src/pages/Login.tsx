@@ -15,17 +15,20 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
   const [errors, setErrors] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     if (session.authenticated) {
-      history.push(`/profile/${session.userURL}`);
+      history.push(`/${session.userURL}`);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   function handleLogin(e: SyntheticEvent) {
     e.preventDefault();
+
+    setErrors([]);
 
     const user = {
       email,
@@ -33,15 +36,13 @@ export default function Login() {
     };
 
     signIn(user, (err) => {
-      setErrors([])
-
-      if(axios.isAxiosError(err) && err) {
-        setErrors((prev) => [
-          ...prev,
-          <ErrorBox key={prev.length}>
-            {err.response!.data.message}
-          </ErrorBox>,
-        ]);
+      if (axios.isAxiosError(err) && err) {
+        if (err.response) {
+          setErrors((prev) => [
+            ...prev,
+            <ErrorBox key={prev.length}>{err.response!.data.message}</ErrorBox>,
+          ]);
+        }
       }
     });
   }
