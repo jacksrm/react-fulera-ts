@@ -11,6 +11,7 @@ interface AuthProviderData {
   session: TSession
   signIn(user: TLoginData, callbackFn: THandleError): void //AxiosResponse<TLoginResponse>
   signOut(): void
+  updateSession(): void
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData)
@@ -39,8 +40,14 @@ export function AuthProvider({ children }: AuthProviderProps ) {
     setSession({ authenticated: false } as TSession)
   }
 
+  async function updateSession() {
+    const response: AxiosResponse<TLoginResponse> = await api.get(`profile/session/${session.user.id}`);
+
+    setSession( ({ authenticated }) => ({...response.data, authenticated }))
+  }
+
   return (
-    <AuthContext.Provider value={{ session, signIn, signOut }} >
+    <AuthContext.Provider value={{ session, signIn, signOut, updateSession }} >
       { children }
     </AuthContext.Provider>
   )

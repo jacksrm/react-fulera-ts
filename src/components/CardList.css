@@ -5,3 +5,10 @@
   align-items: center;
   max-width: 1280px;
 }
+
+.gallery {
+  max-width: none;
+  width: 100%;
+  justify-content: unset;
+  align-items: unset;
+}

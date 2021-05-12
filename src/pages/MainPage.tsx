@@ -85,6 +85,8 @@ export default function MainPage() {
                 to={`/playlist/${list.id}`}
                 title={list.playlistName}
                 cover={ 'http://localhost:3333/' + list.cover }
+                width="300px"
+                height="300px"
               />
             );
           })}
