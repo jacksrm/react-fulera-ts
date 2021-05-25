@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsPencilSquare, BsPlusCircle } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
+import { TPlaylist } from '../react-app-env';
+
 import Button from '../components/Button';
 import Card from '../components/Card';
 
@@ -9,13 +11,21 @@ import CardList from '../components/CardList';
 import AuthContext from '../contexts/auth';
 
 import './Profile.css';
+import api from '../connections/api';
 
 export default function Profile() {
   const { session } = useContext(AuthContext);
   const history = useHistory();
 
+  const [playlists, setPlaylists] = useState<TPlaylist[]>([]);
   const [name, setName] = useState('');
   const [nameURL, setNameURL] = useState('');
+
+  useEffect(() => {
+    api
+      .get(`playlists?userId=${session.user.id}`)
+      .then((response) => setPlaylists(response.data));
+  }, [session]);
 
   useEffect(() => {
     if (!session.authenticated) {
@@ -49,7 +59,19 @@ export default function Profile() {
 
       <h2>Playlists de {name}</h2>
       <CardList gallery>
-        <Card add to="/playlist/add" width="200px" height="200px">
+        {playlists.map((list: any) => {
+          return (
+            <Card
+              key={list.id}
+              to={`/playlist/${list.id}`}
+              title={list.playlistName}
+              cover={'http://localhost:3333/' + list.cover}
+              width="200px"
+              height="200px"
+            />
+          );
+        })}
+        <Card add to="/profile/playlist/add" width="200px" height="200px">
           <BsPlusCircle style={{ width: '40px', height: '40px' }} />
         </Card>
       </CardList>

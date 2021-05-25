@@ -15,6 +15,7 @@ export interface TSongList {
 }
 
 export interface TPlaylist {
+  userId?: number;
   id: number;
   cover: string;
   playlistName: string;

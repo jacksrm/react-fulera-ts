@@ -28,12 +28,9 @@
 
 body {
   overflow: overlay;
+  overflow-x: hidden;
 }
 
-.App {
-  overflow-x: hidden;
-  overflow-y: clip;
-}
 a:hover {
   color: #3BB465;
 }

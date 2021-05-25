@@ -20,7 +20,7 @@ export default function Login() {
 
   useEffect(() => {
     if (session.authenticated) {
-      history.push(`/${session.userURL}`);
+      history.push(`/profile/${session.userURL}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
