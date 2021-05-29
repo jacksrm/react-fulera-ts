@@ -1,13 +1,13 @@
-
 import notFoundImg from '../assets/404.jpg';
 
 import './NotFound.css';
 
-export default function NotFound() {
-
+const NotFound: React.FC = () => {
   return (
     <div className="NotFound">
       <img src={notFoundImg} alt="Cat Not Found" />
     </div>
-  )
-}
+  );
+};
+
+export default NotFound;

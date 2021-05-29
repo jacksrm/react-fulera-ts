@@ -1,4 +1,4 @@
-import { DOMAttributes, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { TPlaylist, TSong } from '../react-app-env';
 
@@ -7,16 +7,16 @@ import api from '../connections/api';
 
 import './PlayList.css';
 
-interface Playlist extends DOMAttributes<HTMLOrSVGElement> {
+interface IPlaylist {
   id: number;
 }
 
-export default function PlayList({ id }: Playlist) {
+const PlayList: FC<IPlaylist> = ({ id }) => {
   const [list, setList] = useState<TSong[]>([]);
   const [playlistInfo, setPlaylistInfo] = useState<TPlaylist>({
     cover: '',
     id: 0,
-    playlistName: ''
+    playlistName: '',
   });
 
   const baseURL = 'http://localhost:3333/';
@@ -45,7 +45,11 @@ export default function PlayList({ id }: Playlist) {
               return (
                 <li key={el.id}>
                   {/* <audio controls src={url}></audio>  */}
-                  <AudioPlayer author={el.author} songURL={url} title={el.title} />
+                  <AudioPlayer
+                    author={el.author}
+                    songURL={url}
+                    title={el.title}
+                  />
                 </li>
               );
             })}
@@ -54,4 +58,6 @@ export default function PlayList({ id }: Playlist) {
       </div>
     </>
   );
-}
+};
+
+export default PlayList;

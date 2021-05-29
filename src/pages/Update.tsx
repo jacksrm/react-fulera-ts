@@ -1,4 +1,4 @@
-import { SyntheticEvent, useContext, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -10,7 +10,7 @@ import AuthContext from '../contexts/auth';
 
 import './Update.css';
 
-export default function Update() {
+const Update: FC = () => {
   const { session, updateSession } = useContext(AuthContext);
   const history = useHistory();
 
@@ -24,20 +24,18 @@ export default function Update() {
   const [errors, setErrors] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    api.get(`profile/${session.user.id}`)
-      .then( ({ data }) => {
-        setEmail(data.email)
-        setName(data.name)
-        setBirth(data.birth)
-        setGender(data.gender)
-      })
-
-  }, [session])
+    api.get(`profile/${session.user.id}`).then(({ data }) => {
+      setEmail(data.email);
+      setName(data.name);
+      setBirth(data.birth);
+      setGender(data.gender);
+    });
+  }, [session]);
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
 
-    setErrors([])
+    setErrors([]);
     window.scrollTo(0, 0);
 
     const user = {
@@ -50,8 +48,8 @@ export default function Update() {
     };
 
     try {
-      const response = await api.patch(`profile/update/${session.user.id}`, user);
-      updateSession()
+      const response = await api.put(`profile/update/${session.user.id}`, user);
+      updateSession();
 
       history.push({
         pathname: '/',
@@ -74,12 +72,10 @@ export default function Update() {
         });
       }
 
-      if(message) {
+      if (message) {
         setErrors((prev) => [
           ...prev,
-          <ErrorBox key={prev.length}>
-            {message}
-          </ErrorBox>,
+          <ErrorBox key={prev.length}>{message}</ErrorBox>,
         ]);
       }
     }
@@ -164,4 +160,6 @@ export default function Update() {
       </form>
     </div>
   );
-}
+};
+
+export default Update;

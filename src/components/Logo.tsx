@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom'
 import logo from '../assets/spotify.png';
 
 import './Logo.css'
 
-export default function Logo() {
+const Logo: FC = () => {
   return (
     <>
       <Link className="Logo" to="/">
@@ -13,3 +14,5 @@ export default function Logo() {
     </>
   );
 }
+
+export default Logo;

@@ -1,21 +1,18 @@
-import Logo from './Logo'
+import Logo from './Logo';
 
-import './Footer.css'
+import './Footer.css';
 
-export default function Footer() {
-  
+const Footer: React.FC = () => {
   function getDate() {
-    const date = new Date()
+    const date = new Date();
 
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-    
-    return `${day}/${
-      month < 10 ? '0' + month : month
-    }/${year}`
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${day}/${month < 10 ? '0' + month : month}/${year}`;
   }
-  
+
   return (
     <>
       <div className="Footer">
@@ -24,4 +21,6 @@ export default function Footer() {
       </div>
     </>
   );
-}
+};
+
+export default Footer;

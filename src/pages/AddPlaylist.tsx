@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useContext, useState } from 'react';
+import { ChangeEvent, FC, SyntheticEvent, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -10,7 +10,7 @@ import AuthContext from '../contexts/auth';
 
 import './AddPlaylist.css';
 
-export default function AddPlaylist() {
+const AddPlaylist: FC = () => {
   const { session } = useContext(AuthContext);
   const history = useHistory();
 
@@ -22,7 +22,7 @@ export default function AddPlaylist() {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
 
-    setErrors([])
+    setErrors([]);
     window.scrollTo(0, 0);
 
     const formData = new FormData();
@@ -53,12 +53,10 @@ export default function AddPlaylist() {
         });
       }
 
-      if(message) {
+      if (message) {
         setErrors((prev) => [
           ...prev,
-          <ErrorBox key={prev.length}>
-            {message}
-          </ErrorBox>,
+          <ErrorBox key={prev.length}>{message}</ErrorBox>,
         ]);
       }
     }
@@ -74,7 +72,7 @@ export default function AddPlaylist() {
 
   return (
     <div className="AddPlaylist">
-     <h1>Inscrever-se com seu endereço de e-mail</h1>
+      <h1>Inscrever-se com seu endereço de e-mail</h1>
       {errors.map((err) => err)}
       <form action="#" onSubmit={handleSubmit}>
         <input
@@ -100,4 +98,6 @@ export default function AddPlaylist() {
       </form>
     </div>
   );
-}
+};
+
+export default AddPlaylist;

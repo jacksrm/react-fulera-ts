@@ -17,7 +17,7 @@ interface ButtonProps extends HTMLAttributes<HTMLOrSVGElement> {
   tag?: keyof JSX.IntrinsicElements | JSX.Element;
 }
 
-export default function Button({
+const Button: React.FC<ButtonProps> = ({
   green,
   gray,
   sm,
@@ -31,8 +31,8 @@ export default function Button({
   tag,
   children,
   ...props
-}: ButtonProps) {
-  const As = tag as keyof JSX.IntrinsicElements || Link;
+}) => {
+  const As = (tag as keyof JSX.IntrinsicElements) || Link;
 
   function classes() {
     let c = '';
@@ -54,4 +54,6 @@ export default function Button({
       {children}
     </As>
   );
-}
+};
+
+export default Button;

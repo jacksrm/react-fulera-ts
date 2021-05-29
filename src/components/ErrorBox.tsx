@@ -1,13 +1,11 @@
-import { HTMLAttributes } from 'react'
-import './ErrorBox.css'
+import './ErrorBox.css';
 
-interface ErrorBoxProps extends HTMLAttributes<HTMLOrSVGElement> {
-
-}
-export default function ErrorBox(props: ErrorBoxProps) {
+const ErrorBox: React.FC = (props) => {
   return (
     <span {...props} id="ErrorBox">
-      { props.children}
+      {props.children}
     </span>
-  )
-}
+  );
+};
+
+export default ErrorBox;

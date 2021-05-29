@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../components/Button';
@@ -8,7 +8,7 @@ import api from '../connections/api';
 
 import './Register.css';
 
-export default function Register() {
+const Register: FC = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ export default function Register() {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
 
-    setErrors([])
+    setErrors([]);
     window.scrollTo(0, 0);
 
     const user = {
@@ -59,12 +59,10 @@ export default function Register() {
         });
       }
 
-      if(message) {
+      if (message) {
         setErrors((prev) => [
           ...prev,
-          <ErrorBox key={prev.length}>
-            {message}
-          </ErrorBox>,
+          <ErrorBox key={prev.length}>{message}</ErrorBox>,
         ]);
       }
     }
@@ -150,4 +148,6 @@ export default function Register() {
       </form>
     </div>
   );
-}
+};
+
+export default Register;

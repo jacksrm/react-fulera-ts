@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { BsPencilSquare, BsPlusCircle } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 import { TPlaylist } from '../react-app-env';
@@ -10,10 +10,11 @@ import CardList from '../components/CardList';
 
 import AuthContext from '../contexts/auth';
 
-import './Profile.css';
 import api from '../connections/api';
 
-export default function Profile() {
+import './Profile.css';
+
+const Profile: FC = () => {
   const { session } = useContext(AuthContext);
   const history = useHistory();
 
@@ -77,4 +78,6 @@ export default function Profile() {
       </CardList>
     </div>
   );
-}
+};
+
+export default Profile;

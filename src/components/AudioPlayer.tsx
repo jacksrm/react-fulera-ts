@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
 
 import './AudioPlayer.css';
@@ -9,7 +9,7 @@ interface AudioPlayerProps {
   author: string;
 }
 
-export default function AudioPlayer({ title, author, songURL }: AudioPlayerProps) {
+const AudioPlayer: FC<AudioPlayerProps> = ({ title, author, songURL }) => {
   const [playing, setPlaying] = useState(false);
   const [song] = useState(new Audio(songURL));
   const [elapsed, setElapsed] = useState('00:00');
@@ -21,10 +21,13 @@ export default function AudioPlayer({ title, author, songURL }: AudioPlayerProps
     playing ? song.play() : song.pause();
 
     setButtonIcon(() =>
-      playing 
-        ? <BsPauseFill style={{ width: '30px', height: '30px', color: 'white' }}/>
-        : <BsPlayFill style={{ width: '30px', height: '30px', color: 'white' }} />
-      
+      playing ? (
+        <BsPauseFill
+          style={{ width: '30px', height: '30px', color: 'white' }}
+        />
+      ) : (
+        <BsPlayFill style={{ width: '30px', height: '30px', color: 'white' }} />
+      )
     );
 
     return () => {
@@ -67,8 +70,12 @@ export default function AudioPlayer({ title, author, songURL }: AudioPlayerProps
       className={'AudioPlayer ' + (playing ? 'selected' : '')}
       onClick={togglePlay}>
       <button>{buttonIcon}</button>
-      <span>{author} - {title}</span>
+      <span>
+        {author} - {title}
+      </span>
       <span>{elapsed}</span>
     </div>
   );
-}
+};
+
+export default AudioPlayer;

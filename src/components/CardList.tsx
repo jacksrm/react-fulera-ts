@@ -1,12 +1,15 @@
-import { HTMLAttributes, useEffect } from 'react';
 import './CardList.css';
 
-interface CardListProps extends HTMLAttributes<HTMLOrSVGElement> {
+interface CardListProps {
   gallery?: boolean;
 }
 
-export default function CardList({gallery, ...props}: CardListProps) {
-  return <div {...props} className={`CardList ${gallery ? 'gallery' : ''}`}>
-    {props.children}
-    </div>;
-}
+const CardList: React.FC<CardListProps> = ({ gallery, ...props }) => {
+  return (
+    <div {...props} className={`CardList ${gallery ? 'gallery' : ''}`}>
+      {props.children}
+    </div>
+  );
+};
+
+export default CardList;

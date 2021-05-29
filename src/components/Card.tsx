@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import { HTMLAttributes } from 'react';
 
 import './Card.css';
 
-interface CardProps extends HTMLAttributes<HTMLOrSVGElement> {
+interface CardProps {
   to: string;
   title?: string;
   cover?: string;
@@ -12,14 +11,14 @@ interface CardProps extends HTMLAttributes<HTMLOrSVGElement> {
   add?: boolean;
 }
 
-export default function Card({
+const Card: React.FC<CardProps> = ({
   to,
   title,
   cover,
   height,
   width,
   ...props
-}: CardProps) {
+}) => {
   const cardContent = (
     <>
       <div>
@@ -32,9 +31,10 @@ export default function Card({
     <Link
       to={to}
       className={`Card ${props.add ? 'add' : ''}`}
-      style={{ width, height }}
-    >
+      style={{ width, height }}>
       {props.add ? props.children : cardContent}
     </Link>
   );
-}
+};
+
+export default Card;

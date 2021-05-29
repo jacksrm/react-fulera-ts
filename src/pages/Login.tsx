@@ -1,4 +1,4 @@
-import { SyntheticEvent, useContext, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,13 +9,13 @@ import AuthContext from '../contexts/auth';
 
 import './Login.css';
 
-export default function Login() {
+const Login: FC = () => {
   const { signIn, session } = useContext(AuthContext);
   const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const [errors, setErrors] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
@@ -75,4 +75,6 @@ export default function Login() {
       </form>
     </div>
   );
-}
+};
+
+export default Login;

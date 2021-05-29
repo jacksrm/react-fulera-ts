@@ -16,7 +16,7 @@ import Footer from './components/Footer';
 
 import { AuthProvider } from './contexts/auth';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       {/* <Navbar session={session} setSession={setSession} /> */}

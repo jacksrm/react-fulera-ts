@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AuthContext from '../contexts/auth';
 import Button from './Button';
@@ -6,8 +6,8 @@ import Logo from './Logo';
 
 import './Navbar.css';
 
-function Navbar() {
-  const { signOut, session } = useContext(AuthContext)
+const Navbar: FC = () => {
+  const { signOut, session } = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -43,12 +43,12 @@ function Navbar() {
           </Button>
         </>
       )
-    )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   function handleLogout() {
-    signOut()
+    signOut();
 
     history.push({
       pathname: '/',
@@ -71,6 +71,6 @@ function Navbar() {
       </nav>
     </header>
   );
-}
+};
 
 export default Navbar;

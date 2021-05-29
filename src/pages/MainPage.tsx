@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { TPlaylist } from '../react-app-env';
@@ -11,46 +11,38 @@ import SuccessBox from '../components/SuccessBox';
 import api from '../connections/api';
 
 import './MainPage.css';
+
 interface LocationProps {
   success: boolean;
-  message: string
+  message: string;
 }
-// interface MainPageProps {
-//   state?: any;
-// }
-// { state }: MainPageProps
-export default function MainPage() {
+
+const MainPage: FC = () => {
   const [playlists, setPlaylists] = useState<TPlaylist[]>([]);
-  const [success, setSuccess] = useState(false)
-  const [message, setMessage] = useState('')
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const location = useLocation<LocationProps>()
-
-  useEffect(() => {
-    api.get('playlists')
-      .then( response => setPlaylists(response.data));
-    
-      window.scrollTo(0,0) 
-    return () => {
-      
-    }
-  }, [])
+  const location = useLocation<LocationProps>();
 
   useEffect(() => {
-    
-    if(location.state) {
+    api.get('playlists').then((response) => setPlaylists(response.data));
+
+    window.scrollTo(0, 0);
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (location.state) {
       setSuccess(location.state.success);
       setMessage(location.state.message);
     }
 
-    window.history.replaceState({}, document.title)
-  },[location])
+    window.history.replaceState({}, document.title);
+  }, [location]);
 
   return (
     <>
-      <SuccessBox success={success}>
-        {message} 
-      </SuccessBox>
+      <SuccessBox success={success}>{message}</SuccessBox>
       <div className="MainPage">
         <div className="container">
           <h1>Vá de premium. E seja feliz</h1>
@@ -84,7 +76,7 @@ export default function MainPage() {
                 key={list.id}
                 to={`/playlist/${list.id}`}
                 title={list.playlistName}
-                cover={ 'http://localhost:3333/' + list.cover }
+                cover={'http://localhost:3333/' + list.cover}
                 width="300px"
                 height="300px"
               />
@@ -94,4 +86,6 @@ export default function MainPage() {
       </div>
     </>
   );
-}
+};
+
+export default MainPage;
